@@ -11,14 +11,15 @@ const gulp = require("gulp"),
   ttf2woff = require("gulp-ttf2woff"),
   ttf2woff2 = require("gulp-ttf2woff2"),
   fileInclude = require("gulp-file-include"),
-  del = require("del");
+  del = require("del"),
+  plumber = require("gulp-plumber");
 
 const path = {
   build: {
     html: "build/",
     css: "build/css/",
     js: "build/js/",
-    img: "build/img/",
+    img: "build/images/",
     fonts: "build/fonts/",
   },
   src: {
@@ -36,6 +37,11 @@ const path = {
     fonts: "src/fonts/**/*.*",
   },
   clean: "./build/",
+  lightClean: [
+    "./build/**/*.*",
+    "!./build/images/**/*.*",
+    "!./build/fonts/**/*.*",
+  ],
 };
 
 function browsersync() {
@@ -61,6 +67,7 @@ function html() {
 function css() {
   return gulp
     .src(path.src.css)
+    .pipe(plumber())
     .pipe(sass())
     .pipe(
       prefixer({
@@ -83,6 +90,7 @@ function css() {
 function js() {
   return gulp
     .src(path.src.js)
+    .pipe(plumber())
     .pipe(fileInclude())
     .pipe(uglify())
     .pipe(gulp.dest(path.build.js))
@@ -119,6 +127,10 @@ function clean() {
   return del(path.clean);
 }
 
+function lightClean() {
+  return del(path.lightClean);
+}
+
 function watchFiles() {
   gulp.watch(path.src.html, html);
   gulp.watch(path.src.css, css);
@@ -132,13 +144,17 @@ const start = gulp.parallel(
   watchFiles,
   browsersync
 );
+
+// quickStart - not refreshing images and fonts
 const quickStart = gulp.parallel(
-  gulp.series(clean, gulp.parallel(html, css, js)),
+  gulp.series(lightClean, gulp.parallel(html, css, js)),
   watchFiles,
   browsersync
 );
 
 exports.html = html;
+exports.clean = clean;
+exports.lightClean = lightClean;
 exports.css = css;
 exports.js = js;
 exports.images = images;
