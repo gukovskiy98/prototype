@@ -1,3 +1,5 @@
+// добавляем .webp к html, если webp поддерживается
+// и .no-webp, если наоборот
 function testWebP(callback) {
   var webP = new Image();
   webP.onload = webP.onerror = function () {
@@ -9,8 +11,8 @@ function testWebP(callback) {
 
 testWebP(function (support) {
   if (support) {
-    document.body.classList.add("webp");
+    document.documentElement.classList.add("webp");
   } else {
-    document.body.classList.add("no-webp");
+    document.documentElement.classList.add("no-webp");
   }
 });

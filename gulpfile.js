@@ -132,11 +132,11 @@ function lightClean() {
 }
 
 function watchFiles() {
-  gulp.watch(path.src.html, html);
-  gulp.watch(path.src.css, css);
-  gulp.watch(path.src.js, js);
-  gulp.watch(path.src.img, images);
-  gulp.watch(path.src.fonts, fonts);
+  gulp.watch(path.watch.html, html);
+  gulp.watch(path.watch.css, css);
+  gulp.watch(path.watch.js, js);
+  gulp.watch(path.watch.img, images);
+  gulp.watch(path.watch.fonts, fonts);
 }
 
 const start = gulp.parallel(
