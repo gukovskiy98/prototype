@@ -65,7 +65,7 @@ input[name="chosen-item"] {
   justify-content: center;
   flex-wrap: wrap;
   &__item {
-    flex: 0 0 320px;
+    flex: 0 1 320px;
     margin: 0 40px 60px;
     height: 480px;
     background-color: #fff;
@@ -168,9 +168,23 @@ input[name="chosen-item"] {
   @include paintItem($defhover-item-color);
 }
 
-[data-is-selected="true"] .item__background {
+[data-is-checked="true"] .item__background {
   @include paintItem($sel-item-color);
   &:hover {
     @include paintItem($selhover-item-color);
+  }
+}
+
+[data-is-available="false"] .item__background {
+  filter: saturate(0.4);
+  & * {
+    color: #d2d2d2;
+  }
+  & .item__weight * {
+    color: #fff;
+  }
+  @include paintItem($disabled-item-color);
+  &:hover {
+    @include paintItem($disabled-item-color);
   }
 }

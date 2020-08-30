@@ -26,7 +26,7 @@ const path = {
   src: {
     html: "src/*.html",
     css: "src/scss/style.scss",
-    js: ["src/js/webptest.js", "src/js/index.js"],
+    js: ["src/js/webptest.js", "src/js/data.js", "src/js/index.js"],
     img: "src/images/**/*.*",
     fonts: "src/fonts/**/*.*",
   },
@@ -92,7 +92,7 @@ function js() {
   return gulp
     .src(path.src.js)
     .pipe(plumber())
-    .pipe(concat("index.js", {newLine: ";"}))
+    .pipe(concat("index.js", { newLine: ";" }))
     .pipe(uglify())
     .pipe(gulp.dest(path.build.js))
     .pipe(browserSync.stream());

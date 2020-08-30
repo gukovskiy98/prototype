@@ -9,28 +9,32 @@
   <body>
     <h1>Ты сегодня покормил&nbsp;кота?</h1>
 
-    <ul class="goods">
-    </ul>
-    <form action="#" method="post" name="chosenitems">
+    <ul class="goods"></ul>
+    <form action="#" method="post" name="chosenitems"></form>
 
-    </form>
     <template>
-      <li class="item goods__item" data-name="" data-is-selected="false">
+      <li
+        class="item goods__item"
+        data-name=""
+        data-is-available="false"
+        data-is-checked="false"
+        data-description=""
+      >
         <div class="item__background">
           <div class="item__wrapper">
-            <span class="item__header"> Сказочное заморское яство </span>
+            <span class="item__header">Сказочное заморское яство</span>
             <h2 class="item__title">
-              <span class="item__title--top"> Нямушка </span>
-              <span class="item__title--bottom"> с фуа-гра </span>
+              <span class="item__title--top"></span>
+              <span class="item__title--bottom"></span>
             </h2>
             <div class="item__amount">
-              <span class="item__portions"><b>10</b> порций</span>
-              <span class="item__mice">мышь в подарок</span>
+              <span class="item__portions"></span>
+              <span class="item__mice"></span>
               <span class="item__additional-info"></span>
             </div>
             <img class="item__img" src="images/cat.png" alt="happy cat" />
             <div class="item__weight">
-              <span class="item__weight-num"> 0,5 </span>
+              <span class="item__weight-num"></span>
               <span class="item__weight-text"> кг </span>
             </div>
           </div>
@@ -42,6 +46,7 @@
       </li>
       <input type="checkbox" name="chosen-item" id="" value="" />
     </template>
+
     <script src="js/index.js"></script>
   </body>
 </html>
