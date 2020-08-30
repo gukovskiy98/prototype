@@ -1,6 +1,6 @@
 const gulp = require("gulp"),
   prefixer = require("gulp-autoprefixer"),
-  uglify = require("gulp-uglify"),
+  uglify = require("gulp-terser"),
   sass = require("gulp-sass"),
   imagemin = require("gulp-imagemin"),
   cleanCSS = require("gulp-clean-css"),
@@ -12,7 +12,8 @@ const gulp = require("gulp"),
   ttf2woff2 = require("gulp-ttf2woff2"),
   fileInclude = require("gulp-file-include"),
   del = require("del"),
-  plumber = require("gulp-plumber");
+  plumber = require("gulp-plumber"),
+  concat = require("gulp-concat");
 
 const path = {
   build: {
@@ -25,7 +26,7 @@ const path = {
   src: {
     html: "src/*.html",
     css: "src/scss/style.scss",
-    js: "src/js/index.js",
+    js: ["src/js/webptest.js", "src/js/index.js"],
     img: "src/images/**/*.*",
     fonts: "src/fonts/**/*.*",
   },
@@ -91,7 +92,7 @@ function js() {
   return gulp
     .src(path.src.js)
     .pipe(plumber())
-    .pipe(fileInclude())
+    .pipe(concat("index.js", {newLine: ";"}))
     .pipe(uglify())
     .pipe(gulp.dest(path.build.js))
     .pipe(browserSync.stream());
