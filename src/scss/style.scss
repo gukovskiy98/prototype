@@ -1,14 +1,15 @@
-@import '../../node_modules/normalize.css/normalize.css';
-@import './fonts.scss';
+@import "../../node_modules/normalize.css/normalize.css";
+@import "./fonts.scss";
 
-$def-item-color: #1698D9;
-$defhover-item-color: #2EA8E6;
-$sel-item-color: #D91667;
-$selhover-item-color: #E62E7A;
-$disabled-item-color: #B3B3B3;
+$def-item-color: #1698d9;
+$defhover-item-color: #2ea8e6;
+$sel-item-color: #d91667;
+$selhover-item-color: #e62e7a;
+$disabled-item-color: #b3b3b3;
 
+// применяется к item-background
 @mixin paintItem($color) {
-  .item__background {
+  & {
     background-image: linear-gradient(135deg, transparent 30px, $color 30px);
   }
   .item__weight {
@@ -16,7 +17,9 @@ $disabled-item-color: #B3B3B3;
   }
 }
 
-*, *::before, *::after {
+*,
+*::before,
+*::after {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -30,7 +33,13 @@ $disabled-item-color: #B3B3B3;
   color: #000;
 }
 body {
-  background: linear-gradient(to top, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, 0.5) 100%), url('../images/bg-pattern.png') #222;
+  background: linear-gradient(
+      to top,
+      rgba(0, 0, 0, 0.5) 0%,
+      rgba(0, 0, 0, 0) 50%,
+      rgba(0, 0, 0, 0.5) 100%
+    ),
+    url("../images/bg-pattern.png") #222;
   min-height: 100vh;
 }
 
@@ -45,7 +54,7 @@ h1 {
 }
 
 input[name="chosen-item"] {
-  display: none;
+  // display: none;
 }
 
 .goods {
@@ -57,24 +66,25 @@ input[name="chosen-item"] {
   flex-wrap: wrap;
   &__item {
     flex: 0 0 320px;
-    margin: 0 40px 40px;
+    margin: 0 40px 60px;
     height: 480px;
     background-color: #fff;
     @media screen and (max-width: 900px) {
-      margin: 0 20px 40px;  
+      margin: 0 20px 60px;
     }
   }
 }
 
 .item {
   background-color: transparent;
-  cursor: pointer;
-  @include paintItem($def-item-color);
   &__background {
+    cursor: pointer;
     width: 100%;
     height: 100%;
     padding: 4px;
     border-radius: 12px;
+    margin-bottom: 13px;
+    @include paintItem($def-item-color);
   }
   &__wrapper {
     width: 100%;
@@ -133,11 +143,34 @@ input[name="chosen-item"] {
     }
   }
   &__amount span {
+    color: #666;
     display: block;
     margin-bottom: 2px;
   }
+  &__bottom-text {
+    color: #fff;
+    font-size: 13px;
+    line-height: 16px;
+    text-align: center;
+    display: block;
+  }
+  &__buy {
+    cursor: pointer;
+    color: $def-item-color;
+    border-bottom: 1px dashed;
+    &:hover {
+      border-bottom: none;
+    }
+  }
 }
 
-.item:hover {
+.item__background:hover {
   @include paintItem($defhover-item-color);
+}
+
+[data-is-selected="true"] .item__background {
+  @include paintItem($sel-item-color);
+  &:hover {
+    @include paintItem($selhover-item-color);
+  }
 }

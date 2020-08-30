@@ -9,107 +9,38 @@
   <body>
     <h1>Ты сегодня покормил&nbsp;кота?</h1>
 
-    <input type="checkbox" name="chosen-item" id="foiegras" value="foiegras">
-    <input type="checkbox" name="chosen-item" id="fish" value="fish">
-    <input type="checkbox" name="chosen-item" id="chicken" value="chicken">
-
     <ul class="goods">
-      <li class="item goods__item goods__item--foiegras">
+    </ul>
+    <form action="#" method="post" name="chosenitems">
+
+    </form>
+    <template>
+      <li class="item goods__item" data-name="" data-is-selected="false">
         <div class="item__background">
           <div class="item__wrapper">
-            <span class="item__header">
-              Сказочное заморское яство
-            </span>
+            <span class="item__header"> Сказочное заморское яство </span>
             <h2 class="item__title">
-              <span class="item__title--top">
-                Нямушка
-              </span>
-              <span class="item__title--bottom">
-                с фуа-гра
-              </span>
+              <span class="item__title--top"> Нямушка </span>
+              <span class="item__title--bottom"> с фуа-гра </span>
             </h2>
             <div class="item__amount">
               <span class="item__portions"><b>10</b> порций</span>
               <span class="item__mice">мышь в подарок</span>
               <span class="item__additional-info"></span>
             </div>
-            <img class="item__img" src="images/cat.png" alt="happy cat">
+            <img class="item__img" src="images/cat.png" alt="happy cat" />
             <div class="item__weight">
-              <span class="item__weight-num">
-                0,5
-              </span>
-              <span class="item__weight-text">
-                кг
-              </span>
+              <span class="item__weight-num"> 0,5 </span>
+              <span class="item__weight-text"> кг </span>
             </div>
           </div>
         </div>
+        <span class="item__bottom-text">
+          Чего сидишь? Порадуй котэ,
+          <span class="item__buy">купи.</span>
+        </span>
       </li>
-      <li class="item goods__item goods__item--fish">
-        <div class="item__background">
-          <div class="item__wrapper">
-            <span class="item__header">
-              Сказочное заморское яство
-            </span>
-            <h2 class="item__title">
-              <span class="item__title--top">
-                Нямушка
-              </span>
-              <span class="item__title--bottom">
-                с рыбой
-              </span>
-            </h2>
-            <div class="item__amount">
-              <span class="item__portions"><b>40</b> порций</span>
-              <span class="item__mice"><b>2</b> мыши в подарок</span>
-              <span class="item__additional-info"></span>
-            </div>
-            <img class="item__img" src="images/cat.png" alt="happy cat">
-            <div class="item__weight">
-              <span class="item__weight-num">
-                2
-              </span>
-              <span class="item__weight-text">
-                кг
-              </span>
-            </div>
-          </div>
-        </div>
-      </li>
-      <li class="item goods__item goods__item--chicken">
-        <div class="item__background">
-          <div class="item__wrapper">
-            <span class="item__header">
-              Сказочное заморское яство
-            </span>
-            <h2 class="item__title">
-              <span class="item__title--top">
-                Нямушка
-              </span>
-              <span class="item__title--bottom">
-                с курой
-              </span>
-            </h2>
-            <div class="item__amount">
-              <span class="item__portions"><b>100</b> порций</span>
-              <span class="item__mice"><b>5</b> мышей в подарок</span>
-              <span class="item__additional-info">заказчик доволен</span>
-            </div>
-            <img class="item__img" src="images/cat.png" alt="happy cat">
-            <div class="item__weight">
-              <span class="item__weight-num">
-                5
-              </span>
-              <span class="item__weight-text">
-                кг
-              </span>
-            </div>
-          </div>
-        </div>
-      </li>
-    </ul>
-    <template>
-
+      <input type="checkbox" name="chosen-item" id="" value="" />
     </template>
     <script src="js/index.js"></script>
   </body>
