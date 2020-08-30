@@ -72,8 +72,8 @@ function itemClickHandler() {
     : (item.dataset.isSelected = "false");
   let checkbox = document.querySelector(`#${item.dataset.name}`);
   item.dataset.isSelected === "false"
-    ? (checkbox.checked = "false")
-    : (checkbox.checked = "true");
+    ? (checkbox.checked = false)
+    : (checkbox.checked = true);
 }
 
 document.addEventListener("click", itemClickHandler);
