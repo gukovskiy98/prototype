@@ -13,7 +13,8 @@ const gulp = require("gulp"),
   fileInclude = require("gulp-file-include"),
   del = require("del"),
   plumber = require("gulp-plumber"),
-  concat = require("gulp-concat");
+  concat = require("gulp-concat"),
+  tinify = require("gulp-tinify");
 
 const path = {
   build: {
@@ -108,7 +109,7 @@ function images() {
     )
     .pipe(gulp.dest(path.build.img))
     .pipe(gulp.src(path.src.img))
-    .pipe(imagemin())
+    .pipe(tinify('2LC9tnWf2sDVj2hHtD3TD5Ftt8xr39pH'))
     .pipe(gulp.dest(path.build.img))
     .pipe(browserSync.stream());
 }
