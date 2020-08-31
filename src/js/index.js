@@ -10,7 +10,13 @@ const bottomDefaultHTML = `Чего сидишь? Порадуй котэ, <span
 
 // data.js
 
-function makeNumbersBold() {}
+function makeNumbersBold(text) {
+  let textArr = text.split(' '); 
+  if (isFinite(textArr[0])) {
+    textArr[0] = `<b>${textArr[0]}</b>`;
+  }
+  return textArr.join(' ')
+}
 
 function parseInfo(receivedInfo) {
   for (let itemObj of receivedInfo) {
@@ -26,8 +32,8 @@ function parseInfo(receivedInfo) {
     itemElem.querySelector(".item__title--top").textContent = itemObj.titleTop;
     itemElem.querySelector(".item__title--bottom").textContent =
       itemObj.titleBottom;
-    itemElem.querySelector(".item__portions").textContent = itemObj.portions;
-    itemElem.querySelector(".item__mice").textContent = itemObj.mice;
+    itemElem.querySelector(".item__portions").innerHTML = makeNumbersBold(itemObj.portions);
+    itemElem.querySelector(".item__mice").innerHTML = makeNumbersBold(itemObj.mice);
     itemElem.querySelector(".item__additional-info").textContent =
       itemObj.addInfo;
     itemElem.querySelector(".item__weight-num").textContent = itemObj.weight;
@@ -41,18 +47,24 @@ function parseInfo(receivedInfo) {
 parseInfo(data);
 
 function setBottomText(item) {
+  let btmText = item.querySelector(".item__bottom-text");
+  if (item.dataset.isAvailable === "false") {
+    btmText.innerHTML = `Печалька, ${item.querySelector('.item__title--bottom').textContent} закончился.`
+    return;
+  }
   if (item.dataset.isChecked === "false") {
-    item.querySelector(".item__bottom-text").innerHTML = bottomDefaultHTML;
+    btmText.innerHTML = bottomDefaultHTML;
   } else {
-    item.querySelector(".item__bottom-text").innerHTML =
-      item.dataset.description;
+    btmText.innerHTML = item.dataset.description;
   }
 }
 
 function setCheckbox(item) {
   let checkbox = document.querySelector(`#${item.dataset.name}`);
   if (item.dataset.isAvailable === "false") {
+    checkbox.checked = false;
     checkbox.disabled = true;
+    return;
   }
   if (item.dataset.isChecked === "false") {
     checkbox.checked = false;
@@ -80,3 +92,32 @@ function itemClickHandler() {
 }
 
 document.addEventListener("click", itemClickHandler);
+
+function itemLeaveHandler() {
+  let item =
+    event.target.closest(".item__background") ||
+    event.target.closest(".item__buy");
+  if (!item) return;
+  item = item.closest(".item");
+  if (item.dataset.isAvailable === "false") return;
+  item.classList.add('mouseout');
+  if (item.dataset.isChecked === "true") {
+    item.querySelector('.item__header').textContent = topOutOfFocusText
+  }
+}
+
+function itemEnterHandler() {
+  let item =
+    event.target.closest(".item__background") ||
+    event.target.closest(".item__buy");
+  if (!item) return;
+  item = item.closest(".item");
+  if (item.dataset.isAvailable === "false") return;
+  item.classList.remove('mouseout');
+  if (item.dataset.isChecked === "true") {
+    item.querySelector('.item__header').textContent = topDefaultText;
+  }
+}
+
+document.addEventListener("mouseout", itemLeaveHandler);
+document.addEventListener("mouseover", itemEnterHandler);

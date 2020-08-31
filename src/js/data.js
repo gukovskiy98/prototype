@@ -33,6 +33,6 @@ let data = [
     weight: "5",
     description: "Филе из цыплят с трюфелями в бульоне.",
     isAvailable: false,
-    isChecked: false,
+    isChecked: true,
   },
 ];
